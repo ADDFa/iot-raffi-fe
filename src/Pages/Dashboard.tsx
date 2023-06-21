@@ -14,7 +14,7 @@ const Dashboard = () => {
     const clasificationRef = useRef<HTMLSpanElement>(null)
 
     const getClassification = useCallback((clasVal: string) => {
-        return clasVal === "0" ? "Normal" : "Diabetes"
+        return clasVal == "0" ? "Normal" : "Diabetes"
     }, [])
 
     useEffect(() => {
