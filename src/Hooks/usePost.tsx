@@ -7,6 +7,7 @@ const usePost = () => {
             method: "POST",
             body: new FormData(body)
         })
+        console.log(res)
         new HandleError(res).show()
     }
 }

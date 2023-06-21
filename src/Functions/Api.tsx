@@ -32,7 +32,7 @@ class Api {
         try {
             return await this.fetchingData(endpoint, init)
         } catch (e: any) {
-            console.error(e)
+            console.log(e)
             return e
         }
     }

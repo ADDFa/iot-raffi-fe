@@ -20,7 +20,33 @@ class HandleError {
         }
 
         if ("errors" in this.res.result) {
-            console.log(this.res.result.errors)
+            const errors = this.res.result.errors
+            for (const error in errors) {
+                const inputError = document.querySelector(`[name="${error}"]`)
+                const parentInput = inputError?.parentElement
+                inputError?.classList.add("is-invalid")
+
+                const currentE = parentInput?.querySelector(".invalid-feedback")
+                if (!currentE) {
+                    const messageE = document.createElement("p")
+                    const messageT = document.createTextNode(errors[error])
+                    messageE.classList.add("invalid-feedback")
+                    messageE.append(messageT)
+                    parentInput?.append(messageE)
+                } else {
+                    currentE.textContent = errors[error]
+                }
+
+                ;(inputError as HTMLInputElement)?.addEventListener(
+                    "input",
+                    (evt) => {
+                        const inputE = evt.currentTarget as HTMLInputElement
+                        if (inputE.classList.contains("is-invalid")) {
+                            inputE.classList.remove("is-invalid")
+                        }
+                    }
+                )
+            }
         }
     }
 }
