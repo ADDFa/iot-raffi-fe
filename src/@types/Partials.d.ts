@@ -1,7 +1,7 @@
 namespace Partials {
-    interface SidebarLink extends React.HTMLAttributes<HTMLAnchorElement> {
-        children?: React.ReactNode
+    interface NavLink {
         to: string
-        iconName: string
+        active?: boolean
+        children: React.ReactNode
     }
 }

@@ -1,11 +1,16 @@
-import { Outlet } from "react-router-dom"
-import Sidebar from "./Partials/Sidebar"
+import { Outlet, redirect } from "react-router-dom"
+import Navbar from "./Partials/Navbar"
+import Auth from "./Functions/Auth"
+
+export const rootLoader = () => {
+    return Auth.token_access ? null : redirect("/")
+}
 
 const Root = () => {
     return (
-        <div className="d-flex gap-3 h-100">
-            <Sidebar />
-            <div className="col h-100">
+        <div>
+            <Navbar />
+            <div className="h-100">
                 <Outlet />
             </div>
         </div>

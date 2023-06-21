@@ -1,5 +1,5 @@
 namespace LoginRegister {
-    interface Form {
+    interface Form extends React.HTMLAttributes<HTMLFormElement> {
         children: React.ReactNode
     }
 
