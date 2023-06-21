@@ -41,7 +41,7 @@ const Dashboard = () => {
 
         const form = formBuilder(
             ["user_id", "adc", "glucose", "clasification"],
-            ["1", adcVal, gluVal, getClassification(clasVal)]
+            ["1", adcVal, gluVal, clasVal]
         )
         create("result", form)
     }
