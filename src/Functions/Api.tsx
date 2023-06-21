@@ -33,6 +33,7 @@ class Api {
         const date = new Date()
         const now = Math.ceil(date.getTime() / 1000)
         const auth = Auth.auth
+        if (!auth) return false
 
         return now > auth.exp
     }
