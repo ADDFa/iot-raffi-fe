@@ -13,7 +13,7 @@ const Navbar = () => {
         <nav className="navbar navbar-expand-lg bg-primary">
             <div className="container-fluid">
                 <Link className="navbar-brand text-light" to="#">
-                    MONITORING GLUKOSA
+                    MONITORING GLUCOSE
                 </Link>
                 <button
                     className="navbar-toggler"
@@ -33,7 +33,7 @@ const Navbar = () => {
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <NavLink to="/dashboard">Dashboard</NavLink>
                         <NavLink to="/chatting">Chatting</NavLink>
-                        <NavLink to="/report">Laporan</NavLink>
+                        <NavLink to="/report">Report</NavLink>
                     </ul>
                     <button
                         className="btn btn-danger text-light"
