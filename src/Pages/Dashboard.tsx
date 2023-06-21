@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useCallback, useEffect, useRef } from "react"
 import Firebase from "../Functions/Firebase"
 import Value from "./Dashboard/Value"
 import ButtonFullRounded from "../Components/ButtonFullRounded"
@@ -13,6 +13,10 @@ const Dashboard = () => {
     const glucoseRef = useRef<HTMLSpanElement>(null)
     const clasificationRef = useRef<HTMLSpanElement>(null)
 
+    const getClassification = useCallback((clasVal: string) => {
+        return clasVal === "0" ? "Normal" : "Diabetes"
+    }, [])
+
     useEffect(() => {
         data.adc((snapshot) => {
             if (!adcRef.current) return
@@ -24,9 +28,11 @@ const Dashboard = () => {
         })
         data.clasification((snapshot) => {
             if (!clasificationRef.current) return
-            clasificationRef.current.textContent = snapshot.val()
+            clasificationRef.current.textContent = getClassification(
+                snapshot.val()
+            )
         })
-    }, [data])
+    }, [data, getClassification])
 
     const saveResult = async () => {
         const adcVal = adcRef.current?.textContent || ""
@@ -35,7 +41,7 @@ const Dashboard = () => {
 
         const form = formBuilder(
             ["user_id", "adc", "glucose", "clasification"],
-            ["1", adcVal, gluVal, clasVal]
+            ["1", adcVal, gluVal, getClassification(clasVal)]
         )
         create("result", form)
     }
@@ -50,9 +56,9 @@ const Dashboard = () => {
                 <Value name="Nilai ADC : " ref={adcRef} value="0" />
                 <Value name="Nilai Glukosa : " ref={glucoseRef} value="0" />
                 <Value
-                    name="Hasil Kalsifikasi : "
+                    name="Hasil Klasifikasi : "
                     ref={clasificationRef}
-                    value="0"
+                    value="Normal"
                 />
 
                 <ButtonFullRounded text="Simpan" onClick={saveResult} />
