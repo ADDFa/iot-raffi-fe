@@ -26,7 +26,9 @@ const Chatting = () => {
     }, [])
 
     const getMessages = useCallback(async () => {
-        setMessages((await Api.handle("message")).result)
+        const messages = await Api.handle("message")
+        console.log(messages.status)
+        if (messages.status === 200) setMessages(messages.result)
     }, [])
 
     useEffect(() => {

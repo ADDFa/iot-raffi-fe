@@ -29,12 +29,39 @@ class Api {
         })
     }
 
+    private static get isExpired(): boolean {
+        const date = new Date()
+        const now = Math.ceil(date.getTime() / 1000)
+        const auth = Auth.auth
+
+        return now > auth.exp
+    }
+
     public static async handle(
         endpoint: string,
         init: RequestInit = {}
     ): Promise<Api.Response> {
         try {
-            return await this.fetchingData(endpoint, init)
+            if (this.isExpired) {
+                return await this.fetchingData("refresh", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        token_refresh: Auth.token_refresh
+                    }),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }).then(async (res) => {
+                    if (res.status !== 200) {
+                        localStorage.clear()
+                        window.location.href = "/"
+                    }
+                    Auth.setAuth(res)
+                    return await this.fetchingData(endpoint, init)
+                })
+            } else {
+                return await this.fetchingData(endpoint, init)
+            }
         } catch (e: any) {
             return e
         }

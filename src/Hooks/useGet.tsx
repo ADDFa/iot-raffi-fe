@@ -5,9 +5,11 @@ const useGet = (endpoint: string): Record<string, any>[] => {
     const [result, setResult] = useState<Record<string, any>[]>([])
 
     useEffect(() => {
-        fetch(`${Api.base_api}/${endpoint}`)
-            .then((res) => res.json())
-            .then((data) => setResult(data))
+        const getResult = async () => {
+            const res = await Api.handle(endpoint)
+            if (res.status === 200) setResult(res.result)
+        }
+        getResult()
     }, [endpoint])
 
     return result

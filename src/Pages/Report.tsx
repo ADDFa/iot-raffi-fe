@@ -2,7 +2,6 @@ import useGet from "../Hooks/useGet"
 
 const Report = () => {
     const result = useGet("result")
-    console.log(result)
 
     return (
         <div className="shadow mt-5 col-md-5 mx-auto p-4 rounded-3 report custom-scroll">
