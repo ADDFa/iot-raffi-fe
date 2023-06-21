@@ -27,12 +27,11 @@ class Api {
 
     public static async handle(
         endpoint: string,
-        init: RequestInit
+        init: RequestInit = {}
     ): Promise<Api.Response> {
         try {
             return await this.fetchingData(endpoint, init)
         } catch (e: any) {
-            console.log(e)
             return e
         }
     }

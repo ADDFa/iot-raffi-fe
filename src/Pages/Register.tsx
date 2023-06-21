@@ -5,13 +5,17 @@ import Input from "../Components/Input"
 import usePost from "../Hooks/usePost"
 import Form from "./LoginRegister/Form"
 import LinkToggle from "./LoginRegister/LinkToggle"
+import { useNavigate } from "react-router-dom"
 
 const Register = () => {
     const create = usePost()
+    const navigate = useNavigate()
 
     const register: FormEventHandler<HTMLFormElement> = (evt) => {
         evt.preventDefault()
-        create("register", evt.currentTarget)
+        create("register", evt.currentTarget, (res) => {
+            if (res.status === 200) navigate("/")
+        })
     }
 
     return (
