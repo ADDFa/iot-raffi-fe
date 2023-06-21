@@ -63,6 +63,18 @@ const Dashboard = () => {
 
                 <ButtonFullRounded text="Simpan" onClick={saveResult} />
             </div>
+
+            <div className="col-md-4 p-3 rounded-3 mt-5 mx-auto text-center">
+                <p className="fs-5">
+                    Hubungi Kami
+                    <br />
+                    <span className="fs-6">
+                        Email : raffizahrandhikap@gmail.com
+                    </span>
+                    <br />
+                    <span className="fs-6">No. Telp : 085156762828</span>
+                </p>
+            </div>
         </div>
     )
 }
