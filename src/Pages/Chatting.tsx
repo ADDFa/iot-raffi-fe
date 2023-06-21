@@ -19,27 +19,31 @@ const Chatting = () => {
     const create = usePost()
     const auth = Auth.auth
     const [messages, setMessages] = useState<Record<string, any>[]>([])
-    console.log(messages)
+
+    const scrollToBottom = useCallback(() => {
+        const chatContainer = chatContainerRef.current
+        chatContainer?.scrollTo(0, chatContainer.scrollHeight)
+    }, [])
 
     const getMessages = useCallback(async () => {
         setMessages((await Api.handle("message")).result)
     }, [])
 
     useEffect(() => {
-        const chatContainer = chatContainerRef.current
-        chatContainer?.scrollTo(0, chatContainer.scrollHeight)
-        getMessages()
-    }, [getMessages])
+        getMessages().then(() => {
+            scrollToBottom()
+        })
+
+        const interval = setInterval(getMessages, 1000)
+        return () => clearInterval(interval)
+    }, [getMessages, scrollToBottom])
 
     const send = () => {
         const form = formBuilder(
             ["user_id", "message"],
             [auth.user.id, messageRef.current?.value]
         )
-        create("message", form, (res) => {
-            if (res.status === 200) getMessages()
-            console.log(res)
-        })
+        create("message", form)
     }
 
     const sendMessage: MouseEventHandler<HTMLButtonElement> = () => {
@@ -62,7 +66,10 @@ const Chatting = () => {
 
     return (
         <div className="container mt-5">
-            <div className="chat-container mb-3" ref={chatContainerRef}>
+            <div
+                className="chat-container custom-scroll mb-3"
+                ref={chatContainerRef}
+            >
                 {messages.map(
                     (
                         {

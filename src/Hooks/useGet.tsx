@@ -1,16 +1,14 @@
-import { useCallback, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Api from "../Functions/Api"
 
-const useGet = (endpoint: string, init = {}) => {
-    const [result, setResult] = useState<Api.Response>()
-
-    const res = useCallback(async () => {
-        setResult(await Api.handle(endpoint, init))
-    }, [endpoint, init])
+const useGet = (endpoint: string): Record<string, any>[] => {
+    const [result, setResult] = useState<Record<string, any>[]>([])
 
     useEffect(() => {
-        res()
-    }, [res])
+        fetch(`${Api.base_api}/${endpoint}`)
+            .then((res) => res.json())
+            .then((data) => setResult(data))
+    }, [endpoint])
 
     return result
 }

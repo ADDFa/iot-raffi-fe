@@ -3,6 +3,10 @@ import Auth from "./Auth"
 class Api {
     private static baseApi = "http://127.0.0.1:8000/api"
 
+    public static get base_api() {
+        return this.baseApi
+    }
+
     public static fetchingData(
         endpoint: string,
         { headers, ...rest }: RequestInit
