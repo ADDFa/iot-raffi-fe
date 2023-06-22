@@ -4,6 +4,7 @@ import Value from "./Dashboard/Value"
 import ButtonFullRounded from "../Components/ButtonFullRounded"
 import useFormBuilder from "../Hooks/useFormBuilder"
 import usePost from "../Hooks/usePost"
+import Auth from "../Functions/Auth"
 
 const Dashboard = () => {
     const data = Firebase()
@@ -13,8 +14,8 @@ const Dashboard = () => {
     const glucoseRef = useRef<HTMLSpanElement>(null)
     const clasificationRef = useRef<HTMLSpanElement>(null)
 
-    const getClassification = useCallback((clasVal: string) => {
-        return clasVal == "0" ? "Normal" : "Diabetes"
+    const getClassification = useCallback((value: number) => {
+        return value === 0 ? "Normal" : "Diabetes"
     }, [])
 
     useEffect(() => {
@@ -27,10 +28,10 @@ const Dashboard = () => {
             glucoseRef.current.textContent = snapshot.val()
         })
         data.clasification((snapshot) => {
+            const value = snapshot.val()
+
             if (!clasificationRef.current) return
-            clasificationRef.current.textContent = getClassification(
-                snapshot.val()
-            )
+            clasificationRef.current.textContent = getClassification(value)
         })
     }, [data, getClassification])
 
@@ -41,7 +42,7 @@ const Dashboard = () => {
 
         const form = formBuilder(
             ["user_id", "adc", "glucose", "clasification"],
-            ["1", adcVal, gluVal, clasVal]
+            [Auth.auth.user.id, adcVal, gluVal, clasVal]
         )
         create("result", form)
     }

@@ -1,6 +1,7 @@
 import Auth from "./Auth"
 
 class Api {
+    // private static baseApi = "https://monitoring-glucose.000webhostapp.com/api"
     private static baseApi = "http://127.0.0.1:8000/api"
 
     public static get base_api() {
@@ -24,6 +25,8 @@ class Api {
                 status: result.status,
                 result: await result.json()
             }
+
+            if (!result.ok) console.log(response.result)
 
             return result.ok ? resolve(response) : reject(response)
         })
