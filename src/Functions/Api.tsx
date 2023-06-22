@@ -1,8 +1,8 @@
 import Auth from "./Auth"
 
 class Api {
-    // private static baseApi = "https://monitoring-glucose.000webhostapp.com/api"
-    private static baseApi = "http://127.0.0.1:8000/api"
+    private static baseApi = "https://monitoring-glucose.000webhostapp.com/api"
+    // private static baseApi = "http://127.0.0.1:8000/api"
 
     public static get base_api() {
         return this.baseApi

@@ -30,7 +30,7 @@ const Register = () => {
                 name="password"
             />
             <LinkToggle text="Sudah memiliki akun?">Login</LinkToggle>
-            <ButtonFullRounded text="Login" />
+            <ButtonFullRounded text="Register" />
         </Form>
     )
 }
