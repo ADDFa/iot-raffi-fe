@@ -51,7 +51,7 @@ const Dashboard = () => {
         <div className="h-100">
             <div className="shadow col-md-4 mx-auto mt-5 p-5 rounded-3">
                 <h1 className="text-center fs-4 fw-bold mb-5">
-                    Memulai Perhitungan
+                    Hasil Pengukuran
                 </h1>
 
                 <Value name="Nilai ADC : " ref={adcRef} value="0" />
@@ -73,7 +73,7 @@ const Dashboard = () => {
                         Email : raffizahrandhikap@gmail.com
                     </span>
                     <br />
-                    <span className="fs-6">No. Telp : 085156762828</span>
+                    <span className="fs-6">No. Telp : 0851-5676-2828</span>
                 </p>
             </div>
         </div>
