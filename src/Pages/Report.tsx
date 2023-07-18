@@ -1,11 +1,13 @@
 import useGet from "../Hooks/useGet"
+import useTimeDate from "../Hooks/useTimeDate"
 
 const Report = () => {
     const result = useGet("result")
+    const timeDate = useTimeDate()
 
     return (
-        <div className="shadow mt-5 col-md-5 mx-auto p-4 rounded-3 report custom-scroll">
-            <h1 className="fs-4 fw-bold">Hasil Laporan</h1>
+        <div className="shadow mt-5 col-md-7 mx-auto p-4 rounded-3 report custom-scroll">
+            <h1 className="fs-4 fw-bold text-center">Data Hasil Pengukuran</h1>
 
             <table className="table mt-5">
                 <thead>
@@ -25,12 +27,21 @@ const Report = () => {
                         <th scope="col" className="text-center">
                             Hasil Klasifikasi
                         </th>
+                        <th scope="col" className="text-center">
+                            Tanggal
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     {result.map(
                         (
-                            { user: { name }, adc, glucose, clasification },
+                            {
+                                user: { name },
+                                adc,
+                                glucose,
+                                clasification,
+                                created_at
+                            },
                             i
                         ) => (
                             <tr key={i}>
@@ -41,6 +52,9 @@ const Report = () => {
                                 <td className="text-center">{adc}</td>
                                 <td className="text-center">{glucose}</td>
                                 <td className="text-center">{clasification}</td>
+                                <td className="text-center">
+                                    {timeDate(created_at)}
+                                </td>
                             </tr>
                         )
                     )}

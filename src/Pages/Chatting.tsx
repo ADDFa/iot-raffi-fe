@@ -35,7 +35,7 @@ const Chatting = () => {
             scrollToBottom()
         })
 
-        const interval = setInterval(getMessages, 1000)
+        const interval = setInterval(getMessages, 2000)
         return () => clearInterval(interval)
     }, [getMessages, scrollToBottom])
 

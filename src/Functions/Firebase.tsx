@@ -3,7 +3,7 @@ import { getDatabase, ref, onValue, DataSnapshot } from "@firebase/database"
 
 const app = initializeApp({
     databaseURL:
-        "https://monitoring-glucose-default-rtdb.asia-southeast1.firebasedatabase.app"
+        "https://monitoring-glucose-60d17-default-rtdb.asia-southeast1.firebasedatabase.app"
 })
 const database = getDatabase(app)
 
