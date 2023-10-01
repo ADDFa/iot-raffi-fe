@@ -18,9 +18,9 @@ const Report = () => {
                         <th scope="col" className="text-center">
                             Nama Pengguna
                         </th>
-                        <th scope="col" className="text-center">
+                        {/* <th scope="col" className="text-center">
                             ADC
-                        </th>
+                        </th> */}
                         <th scope="col" className="text-center">
                             Glukosa
                         </th>
@@ -49,7 +49,7 @@ const Report = () => {
                                     {++i}
                                 </th>
                                 <td className="text-center">{name}</td>
-                                <td className="text-center">{adc}</td>
+                                {/* <td className="text-center">{adc}</td> */}
                                 <td className="text-center">{glucose}</td>
                                 <td className="text-center">{clasification}</td>
                                 <td className="text-center">

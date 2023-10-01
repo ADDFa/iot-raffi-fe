@@ -54,7 +54,7 @@ const Dashboard = () => {
                     Hasil Pengukuran
                 </h1>
 
-                <Value name="Nilai ADC : " ref={adcRef} value="0" />
+                {/* <Value name="Nilai ADC : " ref={adcRef} value="0" /> */}
                 <Value name="Nilai Glukosa : " ref={glucoseRef} value="0" />
                 <Value
                     name="Hasil Klasifikasi : "
