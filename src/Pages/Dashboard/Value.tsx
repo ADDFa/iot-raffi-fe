@@ -1,9 +1,9 @@
 import { forwardRef } from "react"
 
 const Value = forwardRef<HTMLSpanElement, Dashboard.Value>(
-    ({ name, value }, ref) => {
+    ({ name, value, none }, ref) => {
         return (
-            <p className="row">
+            <p className={`row ${none ? "d-none" : ""}`}>
                 <span className="col-8">{name}</span>
                 <span className="col-3" ref={ref}>
                     {value}
